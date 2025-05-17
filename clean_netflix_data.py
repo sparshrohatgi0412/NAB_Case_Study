@@ -50,6 +50,7 @@ def clean_netflix_data():
         dataset[col].fillna('Unknown', inplace=True)
 
     # Convert and extract date fields
+    dataset['date_added'] = dataset['date_added'].astype(str).str.strip()
     dataset['date_added'] = pd.to_datetime(dataset['date_added'], errors='coerce')
     dataset['year_added'] = dataset['date_added'].dt.year
     dataset['month_added'] = dataset['date_added'].dt.month_name()
@@ -59,7 +60,12 @@ def clean_netflix_data():
     genres_exploded = dataset[['show_id', 'genres']].explode('genres')
     genre_dummies = pd.get_dummies(genres_exploded['genres'])
     genre_counts = genres_exploded.join(genre_dummies).groupby('show_id').sum()
- 
+
+    # Handle country (explode)
+
+    dataset['countries'] = dataset['country'].str.split(', ')
+    dataset = dataset.explode('countries')
+    dataset['countries'] = dataset['countries'].str.strip()
 
     # Merge encoded genres back
     dataset = dataset.merge(genre_counts, on='show_id', how='left')
