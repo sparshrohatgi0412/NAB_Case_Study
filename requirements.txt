@@ -1,2 +1,5 @@
+## This file contains the dependencies for the project.
+## It is used to install the dependencies using pip.
+
 pandas>=1.3.0
 pyyaml>=6.0

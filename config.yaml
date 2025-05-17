@@ -1,3 +1,7 @@
+## Netflix Data Cleaning Configuration File
+## This file contains configuration settings for cleaning the Netflix dataset.
+## It specifies the input and output file paths, valid ratings, and columns to fill NA values.
+
 input_path: "netflix_titles.csv"
 output_path: "netflix_cleaned.csv"
 
