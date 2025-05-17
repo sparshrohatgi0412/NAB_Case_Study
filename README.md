@@ -1,6 +1,6 @@
 # NAB_Case_Study
 
-<!-- Project structure -->
+# Project structure
 
 nab_case_study/
 ├── netflix_titles.csv              # Original data
@@ -10,7 +10,7 @@ nab_case_study/
 ├── run_cleaning.sh                # Automation script (optional)
 └── netflix_cleaned.csv            # Cleaned output file (Power BI uses this)
 
-<!-- Run manually without shell script -->
+# Run manually without shell script
 
 python3 -m venv venv
 source venv/bin/activate
@@ -18,8 +18,8 @@ pip install -r requirements.txt
 python clean_netflix_data.py
 
 
-<!-- Run using shell script -->
+#  Run using shell script
 
 ./run_cleaning.sh
 
-<!-- End -->
+
