@@ -40,6 +40,11 @@ def clean_netflix_data():
     # Clean column names
     dataset.columns = dataset.columns.str.strip().str.lower().str.replace(' ', '_')
 
+    # Clean all columns: remove newlines and extra spaces
+    for col in dataset.columns:
+        if dataset[col].dtype == 'object':
+            dataset[col] = dataset[col].str.replace('\n', ' ').str.strip().str.replace(' +', ' ')
+
     # Fix invalid rating values
     invalid_rating_mask = ~dataset['rating'].isin(valid_ratings)
     dataset.loc[invalid_rating_mask & dataset['duration'].isna(), 'duration'] = dataset.loc[invalid_rating_mask, 'rating']
