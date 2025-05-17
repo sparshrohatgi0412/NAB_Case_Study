@@ -1,0 +1,24 @@
+input_path: "netflix_titles.csv"
+output_path: "netflix_cleaned.csv"
+
+valid_ratings:
+  - G
+  - PG
+  - PG-13
+  - R
+  - NC-17
+  - TV-Y
+  - TV-Y7
+  - TV-G
+  - TV-PG
+  - TV-14
+  - TV-MA
+  - NR
+  - UR
+  - TV-Y7-FV
+
+columns_to_fill_na:
+  - country
+  - rating
+  - director
+  - cast
