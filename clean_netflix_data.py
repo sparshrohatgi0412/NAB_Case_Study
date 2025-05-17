@@ -59,9 +59,11 @@ def clean_netflix_data():
     genres_exploded = dataset[['show_id', 'genres']].explode('genres')
     genre_dummies = pd.get_dummies(genres_exploded['genres'])
     genre_counts = genres_exploded.join(genre_dummies).groupby('show_id').sum()
+ 
 
     # Merge encoded genres back
     dataset = dataset.merge(genre_counts, on='show_id', how='left')
+    dataset = dataset.drop(columns=['genres_y', 'genres_x'])
 
     # Save cleaned dataset
     dataset.to_csv(output_path, index=False)
