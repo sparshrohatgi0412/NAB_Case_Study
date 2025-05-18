@@ -3,12 +3,14 @@
 # Project structure
 
 nab_case_study/ <br />
-├── netflix_titles.csv              # Original data  <br />
-├── config.yaml                     # Configuration file <br />
+├── netflix_titles.csv             # Original data  <br />
+├── config.yaml                    # Configuration file <br />
 ├── clean_netflix_data.py          # Python cleaning logic <br />
 ├── requirements.txt               # Python dependencies <br />
 ├── run_cleaning.sh                # Automation script (optional) <br />
-└── netflix_cleaned.csv            # Cleaned output file (Power BI uses this) <br />
+├── netflix_cleaned.csv            # Cleaned output file (Power BI uses this) <br />
+├── nab_case_study.pbix            # Power BI presentation file <br />
+├── nab_case_study.pdf             # Power BI presentation pdf <br />
 
 # Run manually without shell script
 
