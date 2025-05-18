@@ -60,11 +60,10 @@ def clean_netflix_data():
     dataset['year_added'] = dataset['date_added'].dt.year
     dataset['month_added'] = dataset['date_added'].dt.month_name()
 
-    # Handle genres (one-hot encoding)
+    # Handle genres (explode)
     dataset['genres'] = dataset['listed_in'].str.split(', ')
-    genres_exploded = dataset[['show_id', 'genres']].explode('genres')
-    genre_dummies = pd.get_dummies(genres_exploded['genres'])
-    genre_counts = genres_exploded.join(genre_dummies).groupby('show_id').sum()
+    dataset = dataset.explode('genres')
+    dataset['genres'] = dataset[ 'genres'].str.strip()
 
     # Handle country (explode)
 
@@ -72,9 +71,9 @@ def clean_netflix_data():
     dataset = dataset.explode('countries')
     dataset['countries'] = dataset['countries'].str.strip()
 
-    # Merge encoded genres back
-    dataset = dataset.merge(genre_counts, on='show_id', how='left')
-    dataset = dataset.drop(columns=['genres_y', 'genres_x'])
+    # # Merge encoded genres back
+    # dataset = dataset.merge(genre_counts, on='show_id', how='left')
+    # dataset = dataset.drop(columns=['genres_y', 'genres_x'])
 
     # Save cleaned dataset
     dataset.to_csv(output_path, index=False)
