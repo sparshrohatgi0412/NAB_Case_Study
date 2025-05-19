@@ -71,10 +71,6 @@ def clean_netflix_data():
     dataset = dataset.explode('countries')
     dataset['countries'] = dataset['countries'].str.strip()
 
-    # # Merge encoded genres back
-    # dataset = dataset.merge(genre_counts, on='show_id', how='left')
-    # dataset = dataset.drop(columns=['genres_y', 'genres_x'])
-
     # Save cleaned dataset
     dataset.to_csv(output_path, index=False)
     print(f" Cleaned data saved to {output_path}")
